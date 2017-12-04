@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="font/iconfont.css">
+</head>
+<body>
+    <div class="box">
+        <div class="header">
+            <p>公司</p>
+        </div>
+        <div class="section">
+            <!-- <dl>
+                <dt><img src="images/1.gif" alt=""></dt>
+                <dd>
+                    <p>百度</p>
+                    <p>北京市海淀区西北旺</p>
+                    <p>互联网 | 已上市 | 10000人以上</p>
+                    <p>热招： <span>前端工程师</span>等2382个职位</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="images/1.gif" alt=""></dt>
+                <dd>
+                    <p>百度</p>
+                    <p>北京市海淀区西北旺</p>
+                    <p>互联网 | 已上市 | 10000人以上</p>
+                    <p>热招： <span>前端工程师</span>等2382个职位</p>
+                </dd>
+            </dl> -->
+        </div>
+        <div class="footer">
+            <dl>
+                <dt><span class="iconfont">&#xe661;</span></dt>
+                <dd>职位</dd>
+            </dl>
+            <dl>
+                <dt><span class="iconfont">&#xe661;</span></dt>
+                <dd>职位</dd>
+            </dl>
+            <dl>
+                <dt><span class="iconfont">&#xe661;</span></dt>
+                <dd>职位</dd>
+            </dl>
+            <dl>
+                <dt><span class="iconfont">&#xe661;</span></dt>
+                <dd>职位</dd>
+            </dl>
+        </div>
+    </div>
+     <script>
+        var section = document.querySelector('.section');
+        document.documentElement.style.fontSize = window.innerWidth/375*50+"px";
+        if(window.XMLHttpRequest){
+            var xhr = new XMLHttpRequest();
+        } else{
+            var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        xhr.open('GET',"http://localhost:8000/",true);
+        xhr.send();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4 && xhr.status === 200){
+                var obj = JSON.parse(xhr.responseText);
+                var str = "";
+                obj.forEach(function(v,i){
+                    str += `
+                        <dl>
+                            <dt>${v.img}</dt>
+                            <dd>
+                                <p>${v.p1}</p>
+                                <p>${v.p2}</p>
+                                <p>${v.p3}</p>
+                                <p>${v.p4}</p>
+                            </dd>
+                        </dl>
+                    `;
+                })
+                section.innerHTML = str;
+            }
+        }
+        
+    </script> 
+</body>
+</html>
